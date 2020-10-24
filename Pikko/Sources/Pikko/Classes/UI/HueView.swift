@@ -78,10 +78,8 @@ internal class HueView: UIView {
     /// Creates the selector which can be dragged around by the user.
     private func createSelector() {
         
-        selector = UIView(frame: CGRect(x: 0,
-                                        y: 0,
-                                        width: selectorDiameter,
-                                        height: selectorDiameter))
+        selector = UIView(frame: CGRect(x: 0, y: 0,
+                                        width: selectorDiameter, height: selectorDiameter))
         
         selector?.center = CGPoint(x: (borderWidth)/2, y: offset_y)
         selector?.layer.cornerRadius = (selectorDiameter)/2
