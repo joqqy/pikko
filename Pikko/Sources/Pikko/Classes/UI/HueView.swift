@@ -55,6 +55,7 @@ internal class HueView: UIView {
     ///   - selectorDiameter: diameter of the movable hue selector.
     ///   - scale: the scale at which the selector enlargens when it is clicked.
     internal init(frame: CGRect, borderWidth: CGFloat, selectorDiameter: CGFloat, scale: CGFloat) {
+        
         self.borderWidth = borderWidth
         self.borderHeight = 5
         self.radius = (frame.width-borderWidth)/2
@@ -76,6 +77,7 @@ internal class HueView: UIView {
     
     /// Creates the selector which can be dragged around by the user.
     private func createSelector() {
+        
         selector = UIView(frame: CGRect(x: 0,
                                         y: 0,
                                         width: selectorDiameter,
@@ -95,6 +97,7 @@ internal class HueView: UIView {
     
     /// Creates and adds a longpress gesture recognizer to the selector.
     private func setUpGestureRecognizer() {
+        
         let longPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(selectorPanned(_:)))
         longPressGestureRecognizer.minimumPressDuration = 0.0
         selector?.addGestureRecognizer(longPressGestureRecognizer)
@@ -102,6 +105,7 @@ internal class HueView: UIView {
     
     /// Handles the panning of the selector and prohibits it to leave hue ring.
     @objc func selectorPanned(_ panGestureRecognizer: UIPanGestureRecognizer) {
+        
         let location = panGestureRecognizer.location(in: self)
 
         let x = location.x - center.x
@@ -119,11 +123,15 @@ internal class HueView: UIView {
     /// Animates the selector based on the current state of the gesture. Enlargens the
     /// selector when held and shrinks it after it has been released.
     private func animate(_ panGestureRecognizer: UIPanGestureRecognizer) {
-        switch panGestureRecognizer.state {
+        
+        switch panGestureRecognizer.state
+        {
         case .began:
             Animations.animateScale(view: selector!, byScale: scale)
+            
         case .ended:
             Animations.animateScaleReset(view: selector!)
+            
         default:
             break
         }
@@ -148,9 +156,11 @@ internal class HueView: UIView {
     
     /// Creates the hue ring for the given hue.
     private func createHueRing() {
+        
         hueRingView = UIView(frame: self.frame)
         
-        for i in 0..<255 {
+        for i in 0 ..< 255 {
+            
             let layer = CALayer()
             layer.backgroundColor = UIColor(hue: CGFloat(i)/255.0,
                                             saturation: 1.0,
