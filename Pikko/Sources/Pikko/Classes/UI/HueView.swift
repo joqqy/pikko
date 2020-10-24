@@ -169,8 +169,8 @@ internal class HueView: UIView {
             let position_y = sin(position * CGFloat.pi / 180.0) * radius
             let position_x = cos(position * CGFloat.pi / 180.0) * radius
             
-            layer.frame = CGRect(x: position_x+offset_x,
-                                 y: position_y+offset_y,
+            layer.frame = CGRect(x: position_x + offset_x,
+                                 y: position_y + offset_y,
                                  width: borderWidth,
                                  height: borderHeight)
             
